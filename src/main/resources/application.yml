@@ -1,0 +1,17 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: dsscm
+
+  datasource:
+    username: root
+    password: nhzs5588
+    url: jdbc:mysql://localhost:3306/dsscm?useUnicode=true&characterEncoding=utf-8&serverTimeZone=Asia/Shanghai&useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  type-aliases-package: cn.dsscm.pojo
+  configuration:
+    map-underscore-to-camel-case: true
