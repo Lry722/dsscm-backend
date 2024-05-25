@@ -13,7 +13,7 @@ DROP TABLE IF EXISTS `permission`;
 
 CREATE TABLE `permission` (
     `role_id` INT(10) NOT NULL COMMENT '角色ID',
-    `name` VARCHAR(16) NOT NULL COMMENT '目标名',
+    `name` VARCHAR(16) UNIQUE NOT NULL COMMENT '目标名',
     `value` INT(4) NOT NULL COMMENT '权限值，四位分别代表对目标的增删改查权限',
     PRIMARY KEY (`role_id`, `name`)
 );

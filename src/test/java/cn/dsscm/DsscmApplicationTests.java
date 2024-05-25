@@ -1,9 +1,16 @@
 package cn.dsscm;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import cn.dsscm.dao.UserMapper;
+import cn.dsscm.dto.UserQuery;
+import cn.dsscm.pojo.User;
+import cn.dsscm.vo.UserInfo;
 
 @SpringBootTest
 class DsscmApplicationTests {
@@ -26,4 +33,17 @@ class DsscmApplicationTests {
 		System.out.println("相同密码两次加密结果匹配结果为：" + last_password_result);
 	}
 
+	@Test
+	void userMapperTest(@Autowired UserMapper userMapper) {
+		UserInfo user = userMapper.selectById(1);
+		System.out.println("Select by id result: " + user);
+
+		user = userMapper.selectByAccount("admin");
+		System.out.println("Select by account result: " + user);
+
+		UserQuery queryParam = new UserQuery();
+		queryParam.setName("管理员");
+		List<UserInfo> userList = userMapper.selectList(queryParam);
+		System.out.println("Select list result: " + userList);
+	}
 }

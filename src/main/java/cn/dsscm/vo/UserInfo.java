@@ -1,14 +1,15 @@
-package cn.dsscm.pojo;
+package cn.dsscm.vo;
 
 import java.time.LocalDate;
 
 import lombok.Data;
 
 @Data
-public class User {
+public class UserInfo {
     private Integer id;
-    private Integer identity;
-    private String name;
+    private String account;
+    private String roleName;
+    private String userName;
     private String gender;
     private LocalDate birthday;
     private String email;

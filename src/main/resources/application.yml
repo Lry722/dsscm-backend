@@ -12,6 +12,6 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 mybatis:
-  type-aliases-package: cn.dsscm.pojo
+  type-aliases-package: cn.dsscm.pojo,cn.dsscm.vo,cn.dsscm.dto
   configuration:
     map-underscore-to-camel-case: true
