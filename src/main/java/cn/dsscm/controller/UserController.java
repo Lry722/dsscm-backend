@@ -16,7 +16,7 @@ import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/users")
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
