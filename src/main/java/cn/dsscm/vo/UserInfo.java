@@ -8,8 +8,8 @@ import lombok.Data;
 public class UserInfo {
     private Integer id;
     private String account;
-    private String roleName;
-    private String userName;
+    private Integer role;
+    private String name;
     private String gender;
     private LocalDate birthday;
     private String email;

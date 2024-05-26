@@ -1,8 +1,8 @@
 package cn.dsscm.common.enums;
 
 public enum Gender {
-   MALE("男"),
-   FEMALE("女");
+   M("男"),
+   F("女");
    
    private String description;
    

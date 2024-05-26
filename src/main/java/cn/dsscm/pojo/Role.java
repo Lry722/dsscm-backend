@@ -1,7 +1,6 @@
 package cn.dsscm.pojo;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Map;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -14,5 +13,5 @@ public class Role {
     @NotEmpty
     private String name;
 
-    private HashMap<String, Integer> permissions;
+    private Map<String, Integer> permissions;
 }

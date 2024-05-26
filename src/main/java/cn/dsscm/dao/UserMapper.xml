@@ -4,12 +4,11 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.dsscm.dao.UserMapper">
   <select id="selectList" resultType="UserInfo">
-    SELECT *,user.name AS userName, role.name AS roleName FROM user
+    SELECT * FROM user
     JOIN identity ON user.identity = identity.id
-    JOIN role ON identity.role = role.id
     <where>
       <if test="name != null">
-        AND user.name LIKE CONCAT('%', #{name}, '%')
+        AND name LIKE CONCAT('%', #{name}, '%')
       </if>
       <if test="gender != null">
         AND gender = #{gender}
@@ -29,18 +28,16 @@
   <!-- selectById --> 
 
   <select id="selectById" resultType="UserInfo">
-    SELECT *,user.name AS userName, role.name AS roleName FROM user
+    SELECT * FROM user
     JOIN identity ON user.identity = identity.id
-    JOIN role ON identity.role = role.id
     WHERE user.id = #{id}
   </select>
 
   <!-- selectByAccount --> 
 
   <select id="selectByAccount" resultType="UserInfo">
-    SELECT *,user.name AS userName, role.name AS roleName FROM user
+    SELECT * FROM user
     JOIN identity ON user.identity = identity.id
-    JOIN role ON identity.role = role.id
     WHERE account = #{account}
   </select>
 </mapper>

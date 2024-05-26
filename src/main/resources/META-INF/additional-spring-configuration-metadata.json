@@ -1,0 +1,17 @@
+{"properties": [
+  {
+    "name": "upload.path",
+    "type": "java.lang.String",
+    "description": "用户文件上传路径"
+  },
+  {
+    "name": "upload.clean-frequency",
+    "type": "java.lang.String",
+    "description": "临时文件清理周期"
+  },
+  {
+    "name": "upload.force-clean-threshold",
+    "type": "java.lang.String",
+    "description": "最大临时文件数量"
+  }
+]}

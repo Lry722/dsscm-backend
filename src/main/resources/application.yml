@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8081
 
 spring:
   application:
@@ -15,3 +15,13 @@ mybatis:
   type-aliases-package: cn.dsscm.pojo,cn.dsscm.vo,cn.dsscm.dto
   configuration:
     map-underscore-to-camel-case: true
+
+logging:
+  file:
+    name: log.log
+    path: /home/admin/Documents/Java/dsscm-backend/
+
+upload:
+  path: /home/admin/Documents/Java/dsscm-backend/uploads
+  clean-frequency: 60000
+  force-clean-threshold: 100

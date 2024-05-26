@@ -9,7 +9,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import cn.dsscm.dao.UserMapper;
 import cn.dsscm.dto.UserQuery;
-import cn.dsscm.pojo.User;
 import cn.dsscm.vo.UserInfo;
 
 @SpringBootTest
@@ -42,7 +41,7 @@ class DsscmApplicationTests {
 		System.out.println("Select by account result: " + user);
 
 		UserQuery queryParam = new UserQuery();
-		queryParam.setName("管理员");
+		queryParam.setName("管理员");;
 		List<UserInfo> userList = userMapper.selectList(queryParam);
 		System.out.println("Select list result: " + userList);
 	}

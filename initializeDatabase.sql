@@ -7,15 +7,15 @@ CREATE TABLE `role` (
     PRIMARY KEY (`id`)
 ) AUTO_INCREMENT = 2;
 
-INSERT INTO `role` (`id`, `name`) VALUES (1, '超级管理员');
+INSERT INTO `role` (`id`, `name`) VALUES (1, '超级管理员'), (2, '采购部员工');
 
 DROP TABLE IF EXISTS `permission`;
 
 CREATE TABLE `permission` (
     `role_id` INT(10) NOT NULL COMMENT '角色ID',
-    `name` VARCHAR(16) UNIQUE NOT NULL COMMENT '目标名',
+    `name` VARCHAR(16) NOT NULL COMMENT '目标名',
     `value` INT(4) NOT NULL COMMENT '权限值，四位分别代表对目标的增删改查权限',
-    PRIMARY KEY (`role_id`, `name`)
+    KEY `role_index` (`role_id`, `name`)
 );
 
 INSERT INTO
@@ -26,7 +26,14 @@ VALUES (1, 'product', 15),
     (1, 'provider', 15),
     (1, 'user', 15),
     (1, 'role', 15),
-    (1, 'message', 15);
+    (1, 'message', 15),
+    (2, 'product', 8),
+    (2, 'bill', 15),
+    (2, 'order', 8),
+    (2, 'provider', 8),
+    (2, 'user', 0),
+    (2, 'role', 0),
+    (2, 'message', 8);
 
 DROP TABLE IF EXISTS `identity`;
 
@@ -50,6 +57,12 @@ VALUES (
         'admin',
         '$2y$05$vSXrMCHgwCbHkiqpJ7bdVuGknS9rY7.kmGvsBQylT5FkKBeEDbkK6',
         1
+    ),
+    (
+        2,
+        'xiaowang',
+        '$2y$05$vSXrMCHgwCbHkiqpJ7bdVuGknS9rY7.kmGvsBQylT5FkKBeEDbkK6',
+        2
     );
 
 DROP TABLE IF EXISTS `user`;
@@ -58,7 +71,7 @@ CREATE TABLE `user` (
     `id` INT(10) NOT NULL AUTO_INCREMENT COMMENT 'ID',
     `identity` INT(10) UNIQUE NOT NULL COMMENT '用户身份',
     `name` VARCHAR(16) NOT NULL COMMENT '姓名',
-    `gender` ENUM('女', '男') DEFAULT NULL COMMENT '性别',
+    `gender` ENUM('F', 'M') DEFAULT NULL COMMENT '性别',
     `birthday` DATE DEFAULT NULL COMMENT '出生日期',
     `email` VARCHAR(50) DEFAULT NULL COMMENT '邮箱',
     `phone` VARCHAR(15) DEFAULT NULL COMMENT '手机',
@@ -71,3 +84,6 @@ CREATE TABLE `user` (
 INSERT INTO
     `user` (`id`, `identity`, `name`)
 VALUES (1, 1, '超级管理员');
+INSERT INTO
+    `user` (`id`, `identity`, `name`,`gender`,`birthday`,`email`,`phone`) VALUES
+    (2, 2, '林容宇', 'M', '2003-07-22', '958515687@qq.com', '13850894959');

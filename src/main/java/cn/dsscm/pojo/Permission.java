@@ -1,7 +1,5 @@
 package cn.dsscm.pojo;
 
-import java.util.BitSet;
-
 import lombok.Data;
 
 @Data
