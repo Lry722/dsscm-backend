@@ -1,5 +1,6 @@
 package cn.dsscm;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -9,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import cn.dsscm.dao.UserMapper;
 import cn.dsscm.dto.UserQuery;
+import cn.dsscm.service.ImageService;
 import cn.dsscm.vo.UserInfo;
 
 @SpringBootTest
@@ -41,8 +43,14 @@ class DsscmApplicationTests {
 		System.out.println("Select by account result: " + user);
 
 		UserQuery queryParam = new UserQuery();
-		queryParam.setName("管理员");;
+		queryParam.setName("林容宇");
 		List<UserInfo> userList = userMapper.selectList(queryParam);
 		System.out.println("Select list result: " + userList);
+	}
+
+	@Test
+	void imageServiceTest(@Autowired ImageService imageService) throws IOException {
+		byte[] image = imageService.get("user-photo", "VSCode-Thick.png");
+		System.out.println("Get test: " + image.length);
 	}
 }

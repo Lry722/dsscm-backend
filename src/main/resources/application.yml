@@ -22,6 +22,4 @@ logging:
     path: /home/admin/Documents/Java/dsscm-backend/
 
 upload:
-  path: /home/admin/Documents/Java/dsscm-backend/uploads
-  clean-frequency: 60000
-  force-clean-threshold: 100
+  path: /var/dsscm

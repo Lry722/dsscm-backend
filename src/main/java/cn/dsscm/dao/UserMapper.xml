@@ -5,7 +5,6 @@
 <mapper namespace="cn.dsscm.dao.UserMapper">
   <select id="selectList" resultType="UserInfo">
     SELECT * FROM user
-    JOIN identity ON user.identity = identity.id
     <where>
       <if test="name != null">
         AND name LIKE CONCAT('%', #{name}, '%')
@@ -25,19 +24,50 @@
     </where>
   </select>
 
-  <!-- selectById --> 
+  <!-- update --> 
 
-  <select id="selectById" resultType="UserInfo">
-    SELECT * FROM user
-    JOIN identity ON user.identity = identity.id
-    WHERE user.id = #{id}
-  </select>
+  <update id="update">
+    UPDATE user
+      <set>
+          <if test="password != null">
+              password = #{password},
+          </if>
+          <if test="name != null">
+              name = #{name},
+          </if>
+          <if test="gender != null">
+              gender = #{gender},
+          </if>
+          <if test="birthday != null">
+              birthday = #{birthday},
+          </if>
+          <if test="email != null">
+              email = #{email},
+          </if>
+          <if test="phone != null">
+              phone = #{phone},
+          </if>
+          <if test="address != null">
+              address = #{address},
+          </if>
+          <if test="role != null">
+              role = #{role},
+          </if>
+          <if test="photo != null">
+              photo = #{photo},
+          </if>
+          <if test="description != null">
+              description = #{description},
+          </if>
+      </set>
+      WHERE id = #{id}
+  </update>
 
-  <!-- selectByAccount --> 
+  <!-- insert --> 
 
-  <select id="selectByAccount" resultType="UserInfo">
-    SELECT * FROM user
-    JOIN identity ON user.identity = identity.id
-    WHERE account = #{account}
-  </select>
+  <insert id="insert">
+    INSERT INTO user(account, password, name, gender, birthday, email, phone, address, role, photo, description)
+    VALUES (#{account}, #{password}, #{name}, #{gender}, #{birthday}, #{email}, #{phone}, #{address}, #{role}, #{photo}, #{description})
+  </insert>
+
 </mapper>

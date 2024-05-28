@@ -7,12 +7,15 @@ import lombok.Data;
 @Data
 public class User {
     private Integer id;
-    private Integer identity;
+    private String account;
+    private String password;
     private String name;
     private String gender;
     private LocalDate birthday;
     private String email;
     private String phone;
     private String address;
+    private Integer role;
+    private String photo;
     private String description;
 }

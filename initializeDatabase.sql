@@ -35,55 +35,60 @@ VALUES (1, 'product', 15),
     (2, 'role', 0),
     (2, 'message', 8);
 
-DROP TABLE IF EXISTS `identity`;
+DROP TABLE IF EXISTS `user`;
 
-CREATE TABLE `identity` (
+CREATE TABLE `user` (
     `id` INT(10) NOT NULL AUTO_INCREMENT COMMENT 'ID',
     `account` VARCHAR(16) UNIQUE NOT NULL COMMENT '账号',
     `password` VARCHAR(60) NOT NULL COMMENT '密码(BCrypt加密)',
+    `name` VARCHAR(16) NOT NULL COMMENT '姓名',
+    `gender` ENUM('F', 'M') DEFAULT NULL COMMENT '性别',
+    `email` VARCHAR(50) DEFAULT NULL COMMENT '邮箱',
+    `phone` VARCHAR(15) DEFAULT NULL COMMENT '手机',
+    `address` VARCHAR(30) DEFAULT NULL COMMENT '地址',
+    `birthday` DATE DEFAULT NULL COMMENT '出生日期',
     `role` INT(10) DEFAULT NULL COMMENT '角色',
+    `description` TEXT COMMENT '简介',
+    `photo` VARCHAR(42) UNIQUE DEFAULT NULL COMMENT '用户照片 UUID加扩展名',
     PRIMARY KEY (`id`)
 ) AUTO_INCREMENT = 2;
 
 INSERT INTO
-    `identity` (
+    `user` (
         `id`,
         `account`,
         `password`,
+        `name`,
         `role`
     )
 VALUES (
         1,
         'admin',
         '$2y$05$vSXrMCHgwCbHkiqpJ7bdVuGknS9rY7.kmGvsBQylT5FkKBeEDbkK6',
+        '超级管理员',
         1
-    ),
-    (
-        2,
-        'xiaowang',
-        '$2y$05$vSXrMCHgwCbHkiqpJ7bdVuGknS9rY7.kmGvsBQylT5FkKBeEDbkK6',
-        2
     );
 
-DROP TABLE IF EXISTS `user`;
-
-CREATE TABLE `user` (
-    `id` INT(10) NOT NULL AUTO_INCREMENT COMMENT 'ID',
-    `identity` INT(10) UNIQUE NOT NULL COMMENT '用户身份',
-    `name` VARCHAR(16) NOT NULL COMMENT '姓名',
-    `gender` ENUM('F', 'M') DEFAULT NULL COMMENT '性别',
-    `birthday` DATE DEFAULT NULL COMMENT '出生日期',
-    `email` VARCHAR(50) DEFAULT NULL COMMENT '邮箱',
-    `phone` VARCHAR(15) DEFAULT NULL COMMENT '手机',
-    `address` VARCHAR(30) DEFAULT NULL COMMENT '地址',
-    `description` TEXT COMMENT '简介',
-    `photo` VARCHAR(36) DEFAULT NULL COMMENT '用户照片 UUID',
-    PRIMARY KEY (`id`)
-) AUTO_INCREMENT = 2;
-
 INSERT INTO
-    `user` (`id`, `identity`, `name`)
-VALUES (1, 1, '超级管理员');
-INSERT INTO
-    `user` (`id`, `identity`, `name`,`gender`,`birthday`,`email`,`phone`) VALUES
-    (2, 2, '林容宇', 'M', '2003-07-22', '958515687@qq.com', '13850894959');
+    `user` (
+        `id`,
+        `account`,
+        `password`,
+        `name`,
+        `gender`,
+        `birthday`,
+        `email`,
+        `phone`,
+        `role`
+    )
+VALUES (
+        2,
+        'lry722',
+        '$2y$05$vSXrMCHgwCbHkiqpJ7bdVuGknS9rY7.kmGvsBQylT5FkKBeEDbkK6',
+        '林容宇',
+        'M',
+        '2003-07-22',
+        '958515687@qq.com',
+        '13850894959',
+        2
+    );

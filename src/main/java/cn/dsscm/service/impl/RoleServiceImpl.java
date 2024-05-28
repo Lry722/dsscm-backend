@@ -49,13 +49,13 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public void save(Role role) {
-        roleMapper.create(role);
+        roleMapper.insert(role);
         for (String permissionName : role.getPermissions().keySet()) {
             Permission permission = new Permission();
             permission.setName(permissionName);
             permission.setValue(role.getPermissions().get(permissionName));
             permission.setRoleId(role.getId());
-            permissionMapper.create(permission);
+            permissionMapper.insert(permission);
         }
     }
 

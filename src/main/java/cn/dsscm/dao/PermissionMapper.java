@@ -19,7 +19,7 @@ public interface PermissionMapper {
     void deleteByRoleId(Integer roleId);
 
     @Insert("INSERT INTO permission (role_id, name, value) VALUES (#{roleId}, #{name}, #{value})")
-    void create(Permission permission);
+    void insert(Permission permission);
 
     @Update("UPDATE permission SET value = #{value} WHERE role_id = #{roleId} AND name = #{name}")
     void update(Permission permission);
