@@ -19,7 +19,7 @@ public interface UserService {
 
     String selectPhoto(Integer id);
 
-    String selectPassword(Integer id);
+    boolean checkPassword(String account, String password);
 
     void update(UserInfo userInfo, MultipartFile photo) throws IllegalStateException, IOException;
 

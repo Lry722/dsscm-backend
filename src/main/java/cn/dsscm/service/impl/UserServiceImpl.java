@@ -46,11 +46,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String selectPassword(Integer id) {
-        return userMapper.selectPassword(id);
-    }
-
-    @Override
     public void update(UserInfo userInfo, MultipartFile photo) throws IllegalStateException, IOException {
         if (photo != null) {
             String originFilename = selectPhoto(userInfo.getId());
@@ -85,6 +80,16 @@ public class UserServiceImpl implements UserService {
             imageService.delete("user-photo", originFilename);
         }
         userMapper.delete(id);
+    }
+
+    @Override
+    public boolean checkPassword(String account, String password) {
+        String correctPassword = userMapper.selectPassword(account);
+        if (passwordEncoder.matches(password, correctPassword)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

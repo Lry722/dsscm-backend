@@ -1,5 +1,22 @@
-{"properties": [{
-  "name": "upload.path",
-  "type": "java.lang.String",
-  "description": "存放用户上传的数据的路径"
-}]}
+{"properties": [
+  {
+    "name": "upload.path",
+    "type": "java.lang.String",
+    "description": "存放用户上传的数据的路径"
+  },
+  {
+    "name": "token.secret-key",
+    "type": "java.lang.String",
+    "description": "JWT 密钥"
+  },
+  {
+    "name": "token.max-expire",
+    "type": "java.lang.String",
+    "description": "Token 最长存活时间，单位为秒"
+  },
+  {
+    "name": "token.expire",
+    "type": "java.lang.String",
+    "description": "Token 默认存活时间，单位为秒"
+  }
+]}

@@ -23,7 +23,6 @@ public class LocalImageServiceImpl implements ImageService {
     public String upload(String part, MultipartFile file)
             throws IllegalStateException, IOException {
         // UUID 加上扩展名
-        log.info("Uploading file: {}", file.getOriginalFilename());
         String filename = UUID.randomUUID().toString() + "." + file.getOriginalFilename().split("\\.")[1];
         Path targetFile = Path.of(uploadPath, part, filename);
         Files.createDirectories(targetFile.getParent());

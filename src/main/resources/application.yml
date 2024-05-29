@@ -1,6 +1,8 @@
 server:
   port: 8081
 
+
+
 spring:
   application:
     name: dsscm
@@ -23,3 +25,8 @@ logging:
 
 upload:
   path: /var/dsscm
+
+token:
+  secret-key: dsscm
+  expire: 3600
+  max-expire: 604800

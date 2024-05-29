@@ -24,8 +24,8 @@ public interface UserMapper {
     @Select("SELECT photo FROM user WHERE id = #{id}")
     public String selectPhoto(Integer id);
 
-    @Select("SELECT password FROM user WHERE id = #{id}")
-    public String selectPassword(Integer id);
+    @Select("SELECT password FROM user WHERE account = #{account}")
+    public String selectPassword(String account);
 
     public void update(User user);
 
