@@ -8,7 +8,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.github.pagehelper.PageHelper;
+
 import cn.dsscm.dao.UserMapper;
+import cn.dsscm.dto.PageQuery;
 import cn.dsscm.dto.UserQuery;
 import cn.dsscm.pojo.User;
 import cn.dsscm.service.ImageService;
@@ -26,7 +29,9 @@ public class UserServiceImpl implements UserService {
     private final ImageService imageService;
 
     @Override
-    public List<UserInfo> getList(UserQuery userQuery) {
+    public List<UserInfo> getList(UserQuery userQuery, PageQuery pageQuery) {
+        log.info("userQuery: {} pageQuery: {}", userQuery, pageQuery);
+        PageHelper.startPage(pageQuery.getPageNum(), pageQuery.getPageSize());
         return userMapper.selectList(userQuery);
     }
 
@@ -47,19 +52,26 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void update(UserInfo userInfo, MultipartFile photo) throws IllegalStateException, IOException {
-        if (photo != null) {
-            String originFilename = selectPhoto(userInfo.getId());
-            if (originFilename != null) {
-                imageService.delete("user-photo", originFilename);
-            }
-            String filename = imageService.upload("user-photo", photo);
-            userInfo.setPhoto(filename);
-        } else {
-            userInfo.setPhoto(null);
-        }
         User user = new User();
         BeanUtils.copyProperties(userInfo, user, "account", "password");
-        log.info("user: {}", user);
+        log.info("Updating user: {}", user);
+
+        String originPhotoFilename = selectPhoto(user.getId());
+        if (photo != null) {
+            // 前端用 text/plain 表示没有变动
+            if (photo.getContentType() != "text/plain") {
+                if (originPhotoFilename != null && !originPhotoFilename.isEmpty()) {
+                    imageService.delete("user-photo", originPhotoFilename);
+                }
+                String photoFilename = imageService.upload("user-photo", photo);
+                user.setPhoto(photoFilename);
+            }
+        } else {
+            if (originPhotoFilename != null && !originPhotoFilename.isEmpty()) {
+                imageService.delete("user-photo", originPhotoFilename);
+            }
+            user.setPhoto("");
+        }
         userMapper.update(user);
     }
 
@@ -90,6 +102,16 @@ public class UserServiceImpl implements UserService {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public Integer count() {
+        return userMapper.count();
+    }
+
+    @Override
+    public String getPhotoFilename(Integer id) {
+        return userMapper.selectPhoto(id);
     }
 
 }

@@ -2,6 +2,8 @@ package cn.dsscm.pojo;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -22,6 +24,7 @@ public class User {
     @Size(min = 2, max = 16)
     private String name;
     private String gender;
+
     private LocalDate birthday;
     private String email;
     private String phone;

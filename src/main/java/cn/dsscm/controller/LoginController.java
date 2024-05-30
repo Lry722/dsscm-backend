@@ -45,10 +45,12 @@ public class LoginController {
             Date maxExpireAt = new Date(System.currentTimeMillis() + maxExpire * 1000);
             Date expireAt = loginQuery.isRememberMe() ? maxExpireAt : new Date(System.currentTimeMillis() + expire * 1000);
             String token = tokenUtil.getToken(userInfo.getId(), expireAt, maxExpireAt);
-            Cookie cookie = new Cookie("token", token);
-            cookie.setMaxAge(maxExpire);
-            cookie.setPath("/");
-            response.addCookie(cookie);
+            Cookie tokenCookie = new Cookie("token", token);
+            Cookie userIdCookie = new Cookie("userId", userInfo.getId().toString());
+            tokenCookie.setMaxAge(maxExpire);
+            userIdCookie.setMaxAge(maxExpire);
+            response.addCookie(tokenCookie);
+            response.addCookie(userIdCookie);
             return Result.success();
         } else {
             return Result.error(401, "用户名或密码错误");

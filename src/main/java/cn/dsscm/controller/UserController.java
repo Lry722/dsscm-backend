@@ -13,15 +13,19 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import cn.dsscm.common.Result;
+import cn.dsscm.dto.PageQuery;
 import cn.dsscm.dto.UserQuery;
 import cn.dsscm.pojo.User;
 import cn.dsscm.service.ImageService;
 import cn.dsscm.service.UserService;
+import cn.dsscm.utils.ThreadLocalUtil;
 import cn.dsscm.vo.UserInfo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @Slf4j
@@ -32,6 +36,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 public class UserController {
     private final UserService userService;
     private final ImageService imageService;
+
+    @GetMapping("/count")
+    public Result<Integer> count() {
+        return Result.success(userService.count());
+    }
+    
 
     @GetMapping("/{id}")
     public Result<UserInfo> getById(@PathVariable Integer id) {
@@ -44,8 +54,8 @@ public class UserController {
     }
 
     @GetMapping()
-    public Result<List<UserInfo>> getList(UserQuery queryParam) {
-        return Result.success(userService.getList(queryParam));
+    public Result<List<UserInfo>> getList(UserQuery queryParam, PageQuery pageQuery) {
+        return Result.success(userService.getList(queryParam, pageQuery));
     }
 
     @PostMapping()
@@ -66,8 +76,13 @@ public class UserController {
         return Result.success();
     }
 
-    @GetMapping("/photo/{filename}")
-    public byte[] getMethodName(@PathVariable String filename) throws IOException {
+    @GetMapping("/photo/{id}")
+    public byte[] photo(@PathVariable Integer id) throws IOException {
+        if (id == 0) {
+            id = (Integer) ThreadLocalUtil.get("userId");
+        }
+        log.info("获取用户头像，用户ID：{}", id);
+        String filename = userService.getPhotoFilename(id);
         return imageService.get("user-photo", filename);
     }
 }

@@ -84,11 +84,79 @@ INSERT INTO
 VALUES (
         2,
         'lry722',
-        '$2y$05$vSXrMCHgwCbHkiqpJ7bdVuGknS9rY7.kmGvsBQylT5FkKBeEDbkK6',
+        '$2a$10$BntspJxvjMJVFKhw55S7Ce6Uny4YqNmhLnR.2b.jTWbK.H3lcV1Di',
         '林容宇',
         'M',
         '2003-07-22',
         '958515687@qq.com',
         '13850894959',
+        2
+    );
+
+INSERT INTO
+    `user` (
+        `id`,
+        `account`,
+        `password`,
+        `name`,
+        `gender`,
+        `birthday`,
+        `email`,
+        `phone`,
+        `role`
+    )
+VALUES (
+        3,
+        'testUser3',
+        '$2a$10$BntspJxvjMJVFKhw55S7Ce6Uny4YqNmhLnR.2b.jTWbK.H3lcV1Di',
+        '测试用户三',
+        'F',
+        '1999-03-15',
+        'test3@example.com',
+        '13700001111',
+        2
+    ),
+    (
+        4,
+        'demoUser4',
+        '$2a$10$BntspJxvjMJVFKhw55S7Ce6Uny4YqNmhLnR.2b.jTWbK.H3lcV1Di',
+        '演示用户四',
+        'M',
+        '2000-11-29',
+        'demo4@example.org',
+        '13611112222',
+        2
+    ),
+    (
+        5,
+        'sample5',
+        '$2a$10$BntspJxvjMJVFKhw55S7Ce6Uny4YqNmhLnR.2b.jTWbK.H3lcV1Di',
+        '示例用户五',
+        'F',
+        '2002-07-07',
+        'sample5@example.net',
+        '13933334444',
+        2
+    ),
+    (
+        6,
+        'mockUser6',
+        '$2a$10$BntspJxvjMJVFKhw55S7Ce6Uny4YqNmhLnR.2b.jTWbK.H3lcV1Di',
+        '模拟用户六',
+        'M',
+        '1998-09-18',
+        'mock6@example.io',
+        '13555556666',
+        2
+    ),
+    (
+        7,
+        'fictional7',
+        '$2a$10$BntspJxvjMJVFKhw55S7Ce6Uny4YqNmhLnR.2b.jTWbK.H3lcV1Di',
+        '虚构用户七',
+        'F',
+        '2001-04-20',
+        'fictional7@example.co.uk',
+        '13477778888',
         2
     );

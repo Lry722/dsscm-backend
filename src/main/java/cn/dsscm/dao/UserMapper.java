@@ -33,4 +33,7 @@ public interface UserMapper {
 
     @Delete("DELETE FROM user WHERE id = #{id}")
     public void delete(Integer id);
+
+    @Select("SELECT COUNT(*) FROM user")
+    public Integer count();
 }

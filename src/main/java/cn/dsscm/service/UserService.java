@@ -5,13 +5,14 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import cn.dsscm.dto.PageQuery;
 import cn.dsscm.dto.UserQuery;
 import cn.dsscm.pojo.User;
 import cn.dsscm.vo.UserInfo;
 
 public interface UserService {
 
-    List<UserInfo> getList(UserQuery userQuery);
+    List<UserInfo> getList(UserQuery userQuery, PageQuery pageQuery);
 
     UserInfo getById(Integer id);
 
@@ -26,4 +27,8 @@ public interface UserService {
     void insert(User user, MultipartFile photo) throws IllegalStateException, IOException;
 
     void delete(Integer id);
+
+    Integer count();
+
+    String getPhotoFilename(Integer id);
 }
