@@ -160,3 +160,227 @@ VALUES (
         '13477778888',
         2
     );
+
+DROP TABLE IF EXISTS `product_category`;
+
+CREATE TABLE `product_category` (
+    `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '主键',
+    `name` varchar(20) NOT NULL COMMENT '名称',
+    `parent` int(10) NOT NULL COMMENT '父分类',
+    `level` int(11) NOT NULL COMMENT '级别',
+    PRIMARY KEY (`id`)
+)
+
+INSERT INTO
+    `product_category` (
+        `id`,
+        `name`,
+        `parent`,
+        `level`
+    )
+VALUES (1, '电子产品', 0, 1),
+    (2, '手机', 1, 2),
+    (3, '笔记本电脑', 1, 2),
+    (4, '苹果手机', 2, 3),
+    (5, '华为手机', 2, 3),
+    (6, '游戏本', 3, 3),
+    (7, '商务本', 3, 3),
+    (8, '生鲜食品', 0, 1),
+    (9, '水果', 8, 2),
+    (10, '蔬菜', 8, 2),
+    (11, '肉类', 8, 2),
+    (12, '热带水果', 9, 3),
+    (13, '叶类蔬菜', 10, 3)
+
+DROP TABLE IF EXISTS `product`;
+
+CREATE TABLE `product` (
+    `id` INT(10) NOT NULL AUTO_INCREMENT COMMENT '主键',
+    `name` VARCHAR(20) NOT NULL COMMENT '名称',
+    `description` TEXT COMMENT '描述',
+    `price` DECIMAL(10, 2) NOT NULL COMMENT '价格',
+    `placement` VARCHAR(30) DEFAULT NULL COMMENT '摆放位置',
+    `stock` DECIMAL(10, 2) NOT NULL COMMENT '库存',
+    `category_level1` INT(10) DEFAULT NULL COMMENT '分类1',
+    `category_level2` INT(10) DEFAULT NULL COMMENT '分类2',
+    `category_level3` INT(10) DEFAULT NULL COMMENT '分类3',
+    `photo` VARCHAR(42) DEFAULT NULL COMMENT '照片文件名',
+    `deleted` TINYINT(1) DEFAULT 0 COMMENT '逻辑删除',
+    `created_by` BIGINT(20) DEFAULT NULL COMMENT '创建者',
+    `creation_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
+    `modified_by` BIGINT(20) DEFAULT NULL COMMENT '更新者',
+    `modication_date` DATETIME DEFAULT NULL COMMENT '更新时间',
+    PRIMARY KEY (`id`)
+)
+
+INSERT INTO
+    `product` (
+        `id`,
+        `name`,
+        `description`,
+        `price`,
+        `placement`,
+        `stock`,
+        `category_level1`,
+        `category_level2`,
+        `category_level3`,
+        `photo`,
+        `deleted`,
+        `created_by`,
+        `creation_date`,
+        `modified_by`,
+        `modication_date`
+    )
+VALUES (
+        1,
+        'iPhone 13 Pro',
+        '苹果公司最新旗舰手机，配备强大的A15芯片，超视网膜XDR显示屏。',
+        7999.99,
+        'A区1号货架',
+        100.00,
+        1,
+        2,
+        4,
+        'iphone13pro.jpg',
+        0,
+        123456,
+        NOW(),
+        123456,
+        NOW()
+    ),
+    (
+        2,
+        'MacBook Pro 16"',
+        '高性能笔记本，搭载M1 Pro芯片，适合专业级视频编辑和编程。',
+        14999.99,
+        'B区2号货架',
+        50.00,
+        1,
+        3,
+        6,
+        'macbookpro16.jpg',
+        0,
+        789012,
+        NOW(),
+        789012,
+        NOW()
+    ),
+    (
+        3,
+        'Mate 50 Pro',
+        '华为高端智能手机，拥有出色的摄影能力和HarmonyOS操作系统。',
+        6999.99,
+        'C区3号货架',
+        80.00,
+        1,
+        2,
+        5,
+        'mate50pro.jpg',
+        0,
+        13579,
+        NOW(),
+        13579,
+        NOW()
+    ),
+    (
+        4,
+        'ThinkPad X1 Carbon',
+        '轻薄商务笔记本，适合商务人士，长续航与高效能并存。',
+        9999.99,
+        'D区4号货架',
+        30.00,
+        1,
+        3,
+        7,
+        'thinkpadx1carbon.jpg',
+        0,
+        2468,
+        NOW(),
+        2468,
+        NOW()
+    ),
+    (
+        201,
+        '芒果',
+        '新鲜进口芒果，口感香甜多汁，营养丰富。',
+        15.99,
+        '生鲜区A架',
+        200.00,
+        8,
+        9,
+        12,
+        'mango.jpg',
+        0,
+        1,
+        NOW(),
+        1,
+        NOW()
+    ),
+    (
+        202,
+        '菠菜',
+        '有机种植菠菜，富含铁质和维生素，健康绿色。',
+        3.99,
+        '蔬菜区B架',
+        150.00,
+        8,
+        10,
+        13,
+        'spinach.jpg',
+        0,
+        2,
+        NOW(),
+        2,
+        NOW()
+    ),
+    (
+        203,
+        '五花肉',
+        '优质五花肉，适于红烧、烧烤，肉质鲜美。',
+        25.50,
+        '冷冻区C架',
+        100.00,
+        8,
+        11,
+        14,
+        'pork.jpg',
+        0,
+        3,
+        NOW(),
+        3,
+        NOW()
+    ),
+    (
+        204,
+        '蓝莓',
+        '天然野生蓝莓，小果实大营养，抗氧化之王。',
+        29.99,
+        '精品水果区A1',
+        80.00,
+        8,
+        9,
+        12,
+        'blueberry.jpg',
+        0,
+        1,
+        NOW(),
+        1,
+        NOW()
+    ),
+    (
+        205,
+        '西兰花',
+        '精选西兰花，绿色健康，富含膳食纤维。',
+        4.49,
+        '有机蔬菜区B2',
+        200.00,
+        8,
+        10,
+        13,
+        'broccoli.jpg',
+        0,
+        2,
+        NOW(),
+        2,
+        NOW()
+    )

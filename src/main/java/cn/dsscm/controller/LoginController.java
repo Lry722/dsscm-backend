@@ -47,10 +47,14 @@ public class LoginController {
             String token = tokenUtil.getToken(userInfo.getId(), expireAt, maxExpireAt);
             Cookie tokenCookie = new Cookie("token", token);
             Cookie userIdCookie = new Cookie("userId", userInfo.getId().toString());
+            Cookie userNameCookie = new Cookie("userName", userInfo.getName());
             tokenCookie.setMaxAge(maxExpire);
             userIdCookie.setMaxAge(maxExpire);
+            userNameCookie.setMaxAge(maxExpire);
             response.addCookie(tokenCookie);
             response.addCookie(userIdCookie);
+            response.addCookie(userNameCookie);
+
             return Result.success();
         } else {
             return Result.error(401, "用户名或密码错误");

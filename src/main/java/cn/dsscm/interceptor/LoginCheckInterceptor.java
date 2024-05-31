@@ -12,7 +12,6 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import com.alibaba.fastjson.JSON;
 
 import cn.dsscm.common.Result;
-import cn.dsscm.pojo.Role;
 import cn.dsscm.utils.ThreadLocalUtil;
 import cn.dsscm.utils.TokenUtil;
 import jakarta.servlet.http.Cookie;
@@ -34,7 +33,8 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
 
     @SuppressWarnings("unused")
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+            throws IOException {
         response.setContentType("application/json;charset=UTF-8");
 
         Cookie[] cookies = request.getCookies();
@@ -43,15 +43,16 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
                 if (cookie.getName().equals("token")) {
                     // 验证token
                     Map<String, Object> result = tokenUtil.parseToken(cookie.getValue());
-                    Integer userId = (Integer) result.get("userId");
-                    Date expireAt = (Date) result.get("expireAt");
-                    Date forceExpireAt = (Date) result.get("forceExpireAt");
                     if (result != null) {
+                        Integer userId = (Integer) result.get("userId");
+                        Date expireAt = (Date) result.get("expireAt");
+                        Date forceExpireAt = (Date) result.get("forceExpireAt");
                         ThreadLocalUtil.set("userId", userId);
                         Long leftTimeSeconds = (expireAt.getTime() - new Date().getTime()) / 1000;
                         if (leftTimeSeconds < 30) {
                             // 若剩余时间不足半小时，刷新token
-                            String newToken = tokenUtil.getToken(userId, new Date(System.currentTimeMillis() + expire), forceExpireAt);
+                            String newToken = tokenUtil.getToken(userId, new Date(System.currentTimeMillis() + expire),
+                                    forceExpireAt);
                             cookie.setValue(newToken);
                             cookie.setMaxAge(maxExpire);
                             response.addCookie(cookie);

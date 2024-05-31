@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.github.pagehelper.Page;
+
 import cn.dsscm.common.Result;
+import cn.dsscm.dto.PageInfo;
 import cn.dsscm.dto.PageQuery;
 import cn.dsscm.dto.UserQuery;
 import cn.dsscm.pojo.User;
@@ -24,9 +27,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-
 
 @Slf4j
 @CrossOrigin
@@ -41,7 +41,6 @@ public class UserController {
     public Result<Integer> count() {
         return Result.success(userService.count());
     }
-    
 
     @GetMapping("/{id}")
     public Result<UserInfo> getById(@PathVariable Integer id) {
@@ -54,12 +53,13 @@ public class UserController {
     }
 
     @GetMapping()
-    public Result<List<UserInfo>> getList(UserQuery queryParam, PageQuery pageQuery) {
+    public Result<PageInfo<UserInfo>> getList(UserQuery queryParam, PageQuery pageQuery) {
         return Result.success(userService.getList(queryParam, pageQuery));
     }
 
     @PostMapping()
-    public Result<Void> add(@RequestPart User user, @RequestPart(required = false) MultipartFile photo) throws IllegalStateException, IOException {
+    public Result<Void> add(@RequestPart User user, @RequestPart(required = false) MultipartFile photo)
+            throws IllegalStateException, IOException {
         userService.insert(user, photo);
         return Result.success();
     }
@@ -71,7 +71,8 @@ public class UserController {
     }
 
     @PutMapping()
-    public Result<Void> modify(@RequestPart UserInfo userInfo, @RequestPart(required = false) MultipartFile photo) throws IllegalStateException, IOException {
+    public Result<Void> modify(@RequestPart UserInfo userInfo, @RequestPart(required = false) MultipartFile photo)
+            throws IllegalStateException, IOException {
         userService.update(userInfo, photo);
         return Result.success();
     }
@@ -81,8 +82,13 @@ public class UserController {
         if (id == 0) {
             id = (Integer) ThreadLocalUtil.get("userId");
         }
-        log.info("获取用户头像，用户ID：{}", id);
         String filename = userService.getPhotoFilename(id);
         return imageService.get("user-photo", filename);
+    }
+
+    @GetMapping("/photo")
+    public byte[] currentUserPhoto() throws IOException {
+        Integer id = (Integer) ThreadLocalUtil.get("userId");
+        return photo(id);
     }
 }

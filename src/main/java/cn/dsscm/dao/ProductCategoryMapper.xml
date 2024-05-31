@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.dsscm.dao.ProductCategoryMapper">
+
+    <resultMap type="ProductCategory" id="productCategoryList">
+        <id column="id_l1" property="id"/>
+        <result column="name_l1" property="name"/>
+        <result column="parent_l2" property="parent"/>
+        <collection property="children" ofType="ProductCategory">
+           <id column="id_l2" property="id"/>
+           <result column="name_l2" property="name"/>
+           <result column="parent_l2" property="parent"/>
+           <collection property="children" ofType="ProductCategory">
+               <id column="id_l3" property="id"/>
+               <result column="name_l3" property="name"/>
+               <result column="parent_l3" property="parent"/>
+            </collection>
+        </collection>
+     </resultMap>
+
+    <!-- selectList --> 
+
+    <select id="selectList" resultMap="productCategoryList">
+        SELECT
+            pc1.id AS id_l1,
+            pc1.name AS name_l1,
+            pc1.parent AS parent_l1,
+            pc2.id AS id_l2,
+            pc2.name AS name_l2,
+            pc2.parent AS parent_l2,
+            pc3.id AS id_l3,
+            pc3.name AS name_l3,
+            pc3.parent AS parent_l3
+        FROM
+            product_category AS pc1
+            LEFT JOIN product_category AS pc2 ON pc1.id = pc2.parent
+            LEFT JOIN product_category AS pc3 ON pc2.id = pc3.parent
+        WHERE
+            pc1.level = 1
+            AND (
+                pc2.level IS NULL
+                OR pc2.level = 2
+            )
+            AND (
+                pc3.level IS NULL
+                OR pc3.level = 3
+            );
+    </select>  
+</mapper>

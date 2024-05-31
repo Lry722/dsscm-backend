@@ -1,16 +1,17 @@
 package cn.dsscm.service.impl;
 
 import java.io.IOException;
-import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 
 import cn.dsscm.dao.UserMapper;
+import cn.dsscm.dto.PageInfo;
 import cn.dsscm.dto.PageQuery;
 import cn.dsscm.dto.UserQuery;
 import cn.dsscm.pojo.User;
@@ -29,10 +30,10 @@ public class UserServiceImpl implements UserService {
     private final ImageService imageService;
 
     @Override
-    public List<UserInfo> getList(UserQuery userQuery, PageQuery pageQuery) {
-        log.info("userQuery: {} pageQuery: {}", userQuery, pageQuery);
-        PageHelper.startPage(pageQuery.getPageNum(), pageQuery.getPageSize());
-        return userMapper.selectList(userQuery);
+    public PageInfo<UserInfo> getList(UserQuery userQuery, PageQuery pageQuery) {
+        Page<UserInfo> page = PageHelper.startPage(pageQuery.getPageNum(), pageQuery.getPageSize());
+        userMapper.selectList(userQuery);
+        return new PageInfo<UserInfo>(page);
     }
 
     @Override
@@ -54,7 +55,6 @@ public class UserServiceImpl implements UserService {
     public void update(UserInfo userInfo, MultipartFile photo) throws IllegalStateException, IOException {
         User user = new User();
         BeanUtils.copyProperties(userInfo, user, "account", "password");
-        log.info("Updating user: {}", user);
 
         String originPhotoFilename = selectPhoto(user.getId());
         if (photo != null) {
