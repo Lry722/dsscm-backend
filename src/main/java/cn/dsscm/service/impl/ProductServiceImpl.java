@@ -16,8 +16,9 @@ public class ProductServiceImpl implements ProductService {
     private final ProductMapper productMapper;
 
     @Override
-    public List<Product> getList(ProductQuery param) {
-        return productMapper.selectList(param);
+    public List<Product> getList(ProductQuery productQuery) {
+        productQuery.startPage();
+        return productMapper.selectList(productQuery);
     }
     
 }

@@ -243,9 +243,9 @@ VALUES (
         4,
         'iphone13pro.jpg',
         0,
-        123456,
+        1,
         NOW(),
-        123456,
+        1,
         NOW()
     ),
     (
@@ -260,9 +260,9 @@ VALUES (
         6,
         'macbookpro16.jpg',
         0,
-        789012,
+        1,
         NOW(),
-        789012,
+        1,
         NOW()
     ),
     (
@@ -277,9 +277,9 @@ VALUES (
         5,
         'mate50pro.jpg',
         0,
-        13579,
+        1,
         NOW(),
-        13579,
+        1,
         NOW()
     ),
     (
@@ -294,9 +294,9 @@ VALUES (
         7,
         'thinkpadx1carbon.jpg',
         0,
-        2468,
+        1,
         NOW(),
-        2468,
+        1,
         NOW()
     ),
     (

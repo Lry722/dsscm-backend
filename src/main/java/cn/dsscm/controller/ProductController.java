@@ -1,6 +1,7 @@
 package cn.dsscm.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import cn.dsscm.common.Result;
@@ -14,7 +15,6 @@ import lombok.RequiredArgsConstructor;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 
@@ -26,10 +26,9 @@ public class ProductController {
     private final ProductCategoryService productCategoryService;
 
     @GetMapping()
-    public Result<List<Product>> getProductList(@RequestBody(required = false) ProductQuery param) {
-        return Result.success(productService.getList(param));
+    public Result<List<Product>> getProductList(ProductQuery productQuery) {
+        return Result.success(productService.getList(productQuery));
     }
-    
 
     @GetMapping("/categories")
     public Result<List<ProductCategory>> getCategoryList() {
