@@ -1,13 +1,18 @@
 package cn.dsscm.dto;
 
 import cn.dsscm.common.enums.Gender;
+import cn.dsscm.vo.UserInfo;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 /**
  * 用于传递用户查询参数的DTO
  */
 @Data
-public class UserQuery {
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+public class UserQuery extends BaseQuery<UserInfo> {
     private String name;
     private Gender gender;
     private Integer minAge;

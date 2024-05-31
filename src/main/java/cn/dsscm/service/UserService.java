@@ -5,14 +5,13 @@ import java.io.IOException;
 import org.springframework.web.multipart.MultipartFile;
 
 import cn.dsscm.dto.PageInfo;
-import cn.dsscm.dto.PageQuery;
 import cn.dsscm.dto.UserQuery;
 import cn.dsscm.pojo.User;
 import cn.dsscm.vo.UserInfo;
 
 public interface UserService {
 
-    PageInfo<UserInfo> getList(UserQuery userQuery, PageQuery pageQuery);
+    PageInfo<UserInfo> getList(UserQuery userQuery);
 
     UserInfo getById(Integer id);
 

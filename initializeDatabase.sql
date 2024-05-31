@@ -206,10 +206,10 @@ CREATE TABLE `product` (
     `category_level3` INT(10) DEFAULT NULL COMMENT '分类3',
     `photo` VARCHAR(42) DEFAULT NULL COMMENT '照片文件名',
     `deleted` TINYINT(1) DEFAULT 0 COMMENT '逻辑删除',
-    `created_by` BIGINT(20) DEFAULT NULL COMMENT '创建者',
-    `creation_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
-    `modified_by` BIGINT(20) DEFAULT NULL COMMENT '更新者',
-    `modication_date` DATETIME DEFAULT NULL COMMENT '更新时间',
+    `created_by` INT(10) NOT NULL COMMENT '创建者',
+    `creation_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `modified_by` INT(10) NOT NULL COMMENT '更新者',
+    `modification_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     PRIMARY KEY (`id`)
 )
 
@@ -227,9 +227,9 @@ INSERT INTO
         `photo`,
         `deleted`,
         `created_by`,
-        `creation_date`,
+        `creation_time`,
         `modified_by`,
-        `modication_date`
+        `modification_time`
     )
 VALUES (
         1,

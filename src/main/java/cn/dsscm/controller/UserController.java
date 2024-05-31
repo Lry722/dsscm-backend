@@ -1,8 +1,6 @@
 package cn.dsscm.controller;
 
 import java.io.IOException;
-import java.util.List;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,11 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.github.pagehelper.Page;
-
 import cn.dsscm.common.Result;
 import cn.dsscm.dto.PageInfo;
-import cn.dsscm.dto.PageQuery;
 import cn.dsscm.dto.UserQuery;
 import cn.dsscm.pojo.User;
 import cn.dsscm.service.ImageService;
@@ -53,8 +48,8 @@ public class UserController {
     }
 
     @GetMapping()
-    public Result<PageInfo<UserInfo>> getList(UserQuery queryParam, PageQuery pageQuery) {
-        return Result.success(userService.getList(queryParam, pageQuery));
+    public Result<PageInfo<UserInfo>> getList(UserQuery queryParam) {
+        return Result.success(userService.getList(queryParam));
     }
 
     @PostMapping()

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.dsscm.dao.ProductMapper">
+
+    <!-- selectList --> 
+
+    <select id="selectList">
+        SELECT * FROM product
+        <where>
+            <if test="createdBy != null">
+                AND created_by = #{createdBy}
+            </if>
+            <if test="minCreationTime != null">
+                AND creation_time &gt;= #{minCreationTime}
+            </if>
+            <if test="maxCreationTime != null">
+                AND creation_time &lt;= #{maxCreationTime}
+            </if>
+            <if test="modifiedBy != null">
+                AND modified_by = #{modifiedBy}
+            </if>
+            <if test="minModificationTime != null">
+                AND modification_time &gt;= #{minModificationTime}
+            </if>
+            <if test="maxModificationTime != null">
+                AND modification_time &lt;= #{maxModificationTime}
+            </if>
+
+            <if test="name != null and name != ''">
+                AND name LIKE '%' #{name} '%'
+            </if>
+            <if test="category != null">
+                AND category = #{category}
+            </if>
+        </where>
+    </select>  
+</mapper>

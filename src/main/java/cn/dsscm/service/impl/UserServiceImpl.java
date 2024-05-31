@@ -8,11 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
-
 import cn.dsscm.dao.UserMapper;
 import cn.dsscm.dto.PageInfo;
-import cn.dsscm.dto.PageQuery;
 import cn.dsscm.dto.UserQuery;
 import cn.dsscm.pojo.User;
 import cn.dsscm.service.ImageService;
@@ -30,8 +27,8 @@ public class UserServiceImpl implements UserService {
     private final ImageService imageService;
 
     @Override
-    public PageInfo<UserInfo> getList(UserQuery userQuery, PageQuery pageQuery) {
-        Page<UserInfo> page = PageHelper.startPage(pageQuery.getPageNum(), pageQuery.getPageSize());
+    public PageInfo<UserInfo> getList(UserQuery userQuery) {
+        Page<UserInfo> page = userQuery.startPage();
         userMapper.selectList(userQuery);
         return new PageInfo<UserInfo>(page);
     }
