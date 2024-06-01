@@ -8,10 +8,10 @@ import lombok.Data;
 @Data
 public class PageInfo<T> {
     public PageInfo(Page<T> page) {
-        this.count = (int) page.getTotal();
+        this.total = (int) page.getTotal();
         this.data = (ArrayList<T>) page.getResult();
     }
 
-    private Integer count;
+    private Integer total;
     private ArrayList<T> data;
 }

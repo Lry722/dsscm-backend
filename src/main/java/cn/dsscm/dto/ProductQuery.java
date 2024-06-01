@@ -10,5 +10,5 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = true)
 public class ProductQuery extends BaseQuery<Product> {
     private String name;
-    private Integer category;
+    private Integer categoryLevel1;
 }

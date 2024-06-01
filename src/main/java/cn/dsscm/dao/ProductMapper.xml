@@ -31,9 +31,10 @@
             <if test="name != null and name != ''">
                 AND name LIKE '%' #{name} '%'
             </if>
-            <if test="category != null">
-                AND category = #{category}
+            <if test="categoryLevel1 != null">
+                AND category_level1 = #{categoryLevel1}
             </if>
+            AND deleted = 0
         </where>
     </select>  
 </mapper>

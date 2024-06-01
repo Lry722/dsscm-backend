@@ -10,9 +10,16 @@ import lombok.Data;
 public abstract class AuditableEntity {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime creationTime;
-    private String createdBy;
+    private Integer createdBy;
     
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime modificationTime;
-    private String modifiedBy;
+    private Integer modifiedBy;
+
+    public void setCreatedBy(Integer userId) {
+        createdBy = userId;
+        if (modifiedBy == null) {
+            modifiedBy = userId;
+        }
+    }
 }

@@ -21,7 +21,7 @@ public class User {
     @NotBlank
     @Size(min = 2, max = 16)
     private String name;
-    private String gender;
+    private Integer gender;
 
     private LocalDate birthday;
     private String email;
