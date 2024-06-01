@@ -1,16 +1,15 @@
-package cn.dsscm.pojo;
+package cn.dsscm.vo;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
 
 @Data
-@ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
-public class Order extends AuditableEntity {
-    private Integer id;
+public class OrderDetails {
     private String serialNumber;
     private String customerName;
     private String customerPhone;
@@ -19,4 +18,7 @@ public class Order extends AuditableEntity {
     private BigDecimal totalPrice;
     private Integer paymentType;
     private Integer status;
+    @JsonFormat(pattern = "yyyy年MM月dd日 HH:mm:ss", timezone = "GMT+8")
+    private LocalDateTime creationTime;
+    private List<OrderDetail> details;
 }

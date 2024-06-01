@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.dsscm.dao.OrderMapper">
+
+    <!-- selectList -->
+
+    <select id="selectList"> 
+        SELECT *
+        FROM `order`
+        <where>
+            <if test="customerName != null and customerName != ''"> 
+                customer_name LIKE "%"#{customerName}"%" 
+            </if>
+            <if test="status != null"> 
+                AND status = #{status} 
+            </if>
+        </where>
+    </select>
+
+    <!-- selectDetailList -->
+
+    <select id="selectDetailList">
+        SELECT *, product.id AS product_id, product.name AS product_name, product.price AS product_price
+        FROM order_to_products
+        JOIN product ON order_to_products.product_id = product.id
+        <where>
+            order_id = #{orderId}
+        </where>
+    </select>
+</mapper>

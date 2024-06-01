@@ -16,9 +16,7 @@ import cn.dsscm.service.ImageService;
 import cn.dsscm.service.UserService;
 import cn.dsscm.vo.UserInfo;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {

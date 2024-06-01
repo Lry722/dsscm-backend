@@ -30,5 +30,15 @@ public class ProductServiceImpl implements ProductService {
     public void deleteProduct(Integer id) {
         productMapper.delete(id, (Integer) ThreadLocalUtil.get("userId"));
     }
+
+    @Override
+    public List<Product> getAllList() {
+        return productMapper.selectAll();
+    }
+
+    @Override
+    public String getPhotoFilename(Integer id) {
+        return productMapper.selectPhotoFilename(id);
+    }
     
 }

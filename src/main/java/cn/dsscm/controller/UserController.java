@@ -74,9 +74,6 @@ public class UserController {
 
     @GetMapping("/photo/{id}")
     public byte[] photo(@PathVariable Integer id) throws IOException {
-        if (id == 0) {
-            id = (Integer) ThreadLocalUtil.get("userId");
-        }
         String filename = userService.getPhotoFilename(id);
         return imageService.get("user-photo", filename);
     }
