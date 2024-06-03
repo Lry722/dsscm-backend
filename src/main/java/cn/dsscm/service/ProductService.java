@@ -15,5 +15,7 @@ public interface ProductService {
     List<Product> getAllList();
 
     String getPhotoFilename(Integer id);
+
+    Integer count();
     
 }

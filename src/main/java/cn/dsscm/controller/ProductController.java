@@ -1,7 +1,6 @@
 package cn.dsscm.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import cn.dsscm.common.Result;
@@ -12,6 +11,7 @@ import cn.dsscm.pojo.ProductCategory;
 import cn.dsscm.service.ImageService;
 import cn.dsscm.service.ProductCategoryService;
 import cn.dsscm.service.ProductService;
+import cn.dsscm.vo.ProductCategoryNested;
 import lombok.RequiredArgsConstructor;
 
 import java.io.IOException;
@@ -20,6 +20,9 @@ import java.util.List;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 
@@ -48,8 +51,20 @@ public class ProductController {
     }
 
     @GetMapping("/categories")
-    public Result<List<ProductCategory>> getCategoryList() {
+    public Result<List<ProductCategoryNested>> getCategoryList() {
         return Result.success(productCategoryService.getList());
+    }
+
+    @PostMapping("/categories")
+    public Result<Integer> addCategory(@RequestBody ProductCategory category) {
+        productCategoryService.add(category);
+        return Result.success(category.getId());
+    }
+    
+    @DeleteMapping("/categories/{id}")
+    public Result<Void> deleteCategory(@PathVariable Integer id) {
+        productCategoryService.delete(id);
+        return Result.success();
     }
 
     @GetMapping("/photo/{id}")

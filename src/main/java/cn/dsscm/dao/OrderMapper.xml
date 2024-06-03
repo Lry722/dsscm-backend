@@ -27,4 +27,37 @@
             order_id = #{orderId}
         </where>
     </select>
+
+    <!-- selectSalesBetween --> 
+
+    <select id="selectSalesBetween">
+        SELECT SUM(total_price)
+        FROM `order`
+        <where>
+            <if test="beginTime != null">
+                creation_time &gt;= #{beginTime}
+            </if>
+            <if test="endTime != null">
+                AND creation_time &lt; #{endTime}
+            </if>
+        </where>
+    </select>
+
+    <!-- selectCategoryLevel1SalesBetween --> 
+
+    <select id="selectCategoryLevel1SalesBetween">
+        SELECT SUM(order_to_products.total_price)
+        FROM `order`
+        JOIN order_to_products ON order_to_products.order_id = `order`.id
+        JOIN product ON order_to_products.product_id = product.id
+        <where>
+            <if test="beginTime != null">
+                `order`.creation_time &gt;= #{beginTime}
+            </if>
+            <if test="endTime != null">
+                AND `order`.creation_time &lt; #{endTime}
+            </if>
+            AND category_level1 = #{categoryId}
+        </where>
+    </select>
 </mapper>

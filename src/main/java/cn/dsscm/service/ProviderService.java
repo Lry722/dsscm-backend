@@ -12,4 +12,6 @@ public interface ProviderService {
     public void delete(Integer id);
 
     public List<Provider> getAllList();
+
+    public Integer count();
 }

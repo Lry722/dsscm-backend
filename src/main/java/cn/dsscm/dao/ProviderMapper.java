@@ -19,5 +19,8 @@ public interface ProviderMapper {
 
     @Select("SELECT * FROM provider")
     List<Provider> selectAll();
+
+    @Select("SELECT COUNT(*) FROM provider WHERE deleted = 0")
+    Integer selectCount();
     
 }

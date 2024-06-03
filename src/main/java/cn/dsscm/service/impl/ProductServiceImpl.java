@@ -40,5 +40,10 @@ public class ProductServiceImpl implements ProductService {
     public String getPhotoFilename(Integer id) {
         return productMapper.selectPhotoFilename(id);
     }
+
+    @Override
+    public Integer count() {
+        return productMapper.selectCount();
+    }
     
 }

@@ -4,15 +4,15 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.dsscm.dao.ProductCategoryMapper">
 
-    <resultMap type="ProductCategory" id="productCategoryList">
+    <resultMap type="ProductCategoryNested" id="productCategoryList">
         <id column="id_l1" property="id"/>
         <result column="name_l1" property="name"/>
         <result column="parent_l2" property="parent"/>
-        <collection property="children" ofType="ProductCategory">
+        <collection property="children" ofType="ProductCategoryNested">
            <id column="id_l2" property="id"/>
            <result column="name_l2" property="name"/>
            <result column="parent_l2" property="parent"/>
-           <collection property="children" ofType="ProductCategory">
+           <collection property="children" ofType="ProductCategoryNested">
                <id column="id_l3" property="id"/>
                <result column="name_l3" property="name"/>
                <result column="parent_l3" property="parent"/>

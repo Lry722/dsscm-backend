@@ -34,4 +34,9 @@ public class ProviderServiceImpl implements ProviderService {
     public List<Provider> getAllList() {
         return providerMapper.selectAll();
     }
+
+    @Override
+    public Integer count() {
+        return providerMapper.selectCount();
+    }
 }
