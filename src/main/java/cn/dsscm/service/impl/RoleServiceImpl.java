@@ -72,12 +72,6 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public List<Role> findByName(String name) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByName'");
-    }
-
-    @Override
     @Transactional
     public void deleteById(Integer id) {
         roleMapper.deleteById(id);

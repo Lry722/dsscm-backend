@@ -79,8 +79,8 @@ CREATE TABLE `provider` (
     `phone` VARCHAR(20) DEFAULT NULL COMMENT '联系电话',
     `address` VARCHAR(50) DEFAULT NULL COMMENT '地址',
     `fax` VARCHAR(20) DEFAULT NULL COMMENT '传真',
-    `companyLicencePicture` VARCHAR(42) DEFAULT NULL COMMENT '企业营业执照文件名',
-    `organizationCodePicture` VARCHAR(42) DEFAULT NULL COMMENT '组织机构代码证文件名',
+    `company_licence_picture` VARCHAR(42) DEFAULT NULL COMMENT '企业营业执照文件名',
+    `organization_code_picture` VARCHAR(42) DEFAULT NULL COMMENT '组织机构代码证文件名',
     -- 账单信息可能会引用历史供应商，因此采用逻辑删除
     `deleted` TINYINT(1) NOT NULL DEFAULT 0 COMMENT '逻辑删除',
     `created_by` INT(10) NOT NULL COMMENT '创建者',

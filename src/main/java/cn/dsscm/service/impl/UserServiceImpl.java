@@ -42,19 +42,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String selectPhoto(Integer id) {
-        return userMapper.selectPhoto(id);
-    }
-
-    @Override
     public void update(UserInfo userInfo, MultipartFile photo) throws IllegalStateException, IOException {
         User user = new User();
         BeanUtils.copyProperties(userInfo, user, "account", "password");
 
-        String originPhotoFilename = selectPhoto(user.getId());
+        String originPhotoFilename = userMapper.selectPhoto(user.getId());
         if (photo != null) {
             // 前端用 text/plain 表示没有变动
-            if (photo.getContentType() != "text/plain") {
+            if (photo.getContentType().equals("image/jpeg")) {
                 if (originPhotoFilename != null && !originPhotoFilename.isEmpty()) {
                     imageService.delete("user-photo", originPhotoFilename);
                 }
@@ -82,7 +77,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void delete(Integer id) {
-        String originFilename = selectPhoto(id);
+        String originFilename = userMapper.selectPhoto(id);
         if (originFilename != null) {
             imageService.delete("user-photo", originFilename);
         }

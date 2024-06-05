@@ -11,11 +11,9 @@ import cn.dsscm.vo.OverviewInfo;
 import cn.dsscm.vo.SaleLast24H;
 import lombok.RequiredArgsConstructor;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 

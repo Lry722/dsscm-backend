@@ -37,4 +37,74 @@
             AND deleted = 0
         </where>
     </select>  
+
+    <!-- insert --> 
+
+    <update id="update">
+        UPDATE product
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="description != null">
+                description = #{description},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="placement != null">
+                placement = #{placement},
+            </if>
+            <if test="stock != null">
+                stock = #{stock},
+            </if>
+            <if test="categoryLevel1 != null">
+                category_level1 = #{categoryLevel1},
+            </if>
+            <if test="categoryLevel2 != null">
+                category_level2 = #{categoryLevel2},
+            </if>
+            <if test="categoryLevel3 != null">
+                category_level3 = #{categoryLevel3},
+            </if>
+            <if test="photo != null">
+                photo = #{photo},
+            </if>
+            modified_by = #{modifiedBy}
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <!-- insert --> 
+
+    <insert id="insert">
+        INSERT INTO product (
+            name,
+            description,
+            price,
+            placement,
+            stock,
+            unit,
+            category_level1,
+            category_level2,
+            category_level3,
+            photo,
+            created_by,
+            modified_by
+        )
+        VALUES (
+            #{name},
+            #{description},
+            #{price},
+            #{placement},
+            #{stock},
+            #{unit},
+            #{categoryLevel1},
+            #{categoryLevel2},
+            #{categoryLevel3},
+            #{photo},
+            #{createdBy},
+            #{createdBy}
+        )
+    </insert>
 </mapper>

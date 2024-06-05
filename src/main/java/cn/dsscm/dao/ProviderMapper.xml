@@ -18,4 +18,45 @@
             AND deleted = 0
         </where>
     </select>  
+
+    <!-- insert --> 
+
+    <insert id="insert">
+        INSERT INTO provider (code, name, description, contact, phone, address, fax, company_licence_picture, organization_code_picture, created_by, modified_by)
+        VALUES (#{code}, #{name}, #{description}, #{contact}, #{phone}, #{address}, #{fax}, #{companyLicencePicture}, #{organizationCodePicture}, #{createdBy}, #{modifiedBy})
+    </insert>
+
+    <!-- update -->
+
+    <update id="update">
+        UPDATE provider
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="description != null and description != ''">
+                description = #{description},
+            </if>
+            <if test="contact != null and contact != ''">
+                contact = #{contact},
+            </if>
+            <if test="phone != null and phone != ''">
+                phone = #{phone},
+            </if>
+            <if test="address != null and address != ''">
+                address = #{address},
+            </if>
+            <if test="fax != null and fax != ''">
+                fax = #{fax},
+            </if>
+            <if test="companyLicencePicture != null">
+                company_licence_picture = #{companyLicencePicture},
+            </if>
+            <if test="organizationCodePicture != null">
+                organization_code_picture = #{organizationCodePicture},
+            </if>
+            modified_by = #{modifiedBy},
+        </set>
+        WHERE id = #{id}
+    </update>
 </mapper>

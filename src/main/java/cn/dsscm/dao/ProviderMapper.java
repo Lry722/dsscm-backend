@@ -14,13 +14,25 @@ public interface ProviderMapper {
 
     List<Provider> selectList(ProviderQuery queryParams);
 
-    @Update("UPDATE provider SET deleted = 1 WHERE id = #{id}")
-    void delete(Integer id);
+    @Update("UPDATE provider SET deleted = 1, modifiedBy = #{modifiedBy} WHERE id = #{id}")
+    void delete(Integer id, Integer modifiedBy);
+
+    @Select("SELECT * FROM provider WHERE id = #{id}")
+    Provider select(Integer id);
 
     @Select("SELECT * FROM provider")
     List<Provider> selectAll();
 
     @Select("SELECT COUNT(*) FROM provider WHERE deleted = 0")
     Integer selectCount();
-    
+
+    void insert(Provider provider);
+
+    void update(Provider provider);
+
+    @Select("SELECT company_licence_picture FROM provider WHERE id = #{id}")
+    String selectCompanyLicencePicture(Integer id);
+
+    @Select("SELECT organization_code_picture FROM provider WHERE id = #{id}")
+    String selectOrganizationCodePicture(Integer id);
 }

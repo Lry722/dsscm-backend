@@ -13,7 +13,6 @@ import com.github.pagehelper.Page;
 
 import cn.dsscm.dao.OrderMapper;
 import cn.dsscm.dao.ProductCategoryMapper;
-import cn.dsscm.dao.ProductMapper;
 import cn.dsscm.dto.OrderQuery;
 import cn.dsscm.dto.PageInfo;
 import cn.dsscm.service.OrderService;
@@ -22,7 +21,6 @@ import cn.dsscm.vo.ProductCategoryNested;
 import cn.dsscm.vo.SaleLast24H;
 import lombok.RequiredArgsConstructor;
 import cn.dsscm.pojo.Order;
-import cn.dsscm.pojo.Product;
 
 @Service
 @RequiredArgsConstructor

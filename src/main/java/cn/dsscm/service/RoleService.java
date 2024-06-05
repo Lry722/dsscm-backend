@@ -9,8 +9,6 @@ public interface RoleService {
 
     public Role findById(Integer id);
 
-    public List<Role> findByName(String name);
-
     public void save(Role role);
 
     public void update(Role role);

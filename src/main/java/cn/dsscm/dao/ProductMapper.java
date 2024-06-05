@@ -8,7 +8,6 @@ import org.apache.ibatis.annotations.Update;
 
 import cn.dsscm.dto.ProductQuery;
 import cn.dsscm.pojo.Product;
-import cn.dsscm.pojo.ProductCategory;
 
 @Mapper
 public interface ProductMapper {
@@ -21,11 +20,18 @@ public interface ProductMapper {
     public List<Product> selectAll();
 
     @Select("SELECT photo FROM product WHERE id = #{id}")
-    public String selectPhotoFilename(Integer id);
+    public String selectPhoto(Integer id);
 
     @Select("SELECT COUNT(*) FROM product WHERE deleted = 0")
     public Integer selectCount();
 
     @Select("SELECT COUNT(*) FROM product WHERE deleted = 0 AND category_level3 = #{id}")
     public int selectCountByCategory(Integer id);
+
+    @Select("SELECT * FROM product WHERE id = #{id}")
+    public Product select(Integer id);
+
+    public void insert(Product product);
+
+    public void update(Product product);
 }

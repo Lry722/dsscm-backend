@@ -2,20 +2,16 @@ package cn.dsscm.service.impl;
 
 import java.util.List;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.dsscm.dao.ProductCategoryMapper;
 import cn.dsscm.dao.ProductMapper;
-import cn.dsscm.pojo.Product;
 import cn.dsscm.pojo.ProductCategory;
 import cn.dsscm.service.ProductCategoryService;
 import cn.dsscm.vo.ProductCategoryNested;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ProductCategoryServiceImpl implements ProductCategoryService {
@@ -47,5 +43,9 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
         }
         productCategoryMapper.delete(category.getId());
     }
-    
+
+    @Override
+    public ProductCategory get(Integer id) {
+        return productCategoryMapper.select(id);
+    }
 }

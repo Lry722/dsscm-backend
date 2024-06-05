@@ -12,5 +12,7 @@ public interface ProductCategoryService {
     void add(ProductCategory category);
 
     void delete(Integer id);
+
+    ProductCategory get(Integer id);
     
 }

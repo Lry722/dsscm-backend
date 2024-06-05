@@ -19,11 +19,9 @@ import cn.dsscm.service.UserService;
 import cn.dsscm.utils.ThreadLocalUtil;
 import cn.dsscm.vo.UserInfo;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
-@Slf4j
 @CrossOrigin
 @RestController
 @RequestMapping("/users")

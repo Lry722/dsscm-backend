@@ -17,8 +17,6 @@ public interface UserService {
 
     UserInfo getByAccount(String account);
 
-    String selectPhoto(Integer id);
-
     boolean checkPassword(String account, String password);
 
     void update(UserInfo userInfo, MultipartFile photo) throws IllegalStateException, IOException;

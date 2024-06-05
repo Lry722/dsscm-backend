@@ -1,6 +1,9 @@
 package cn.dsscm.service;
 
+import java.io.IOException;
 import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import cn.dsscm.dto.PageInfo;
 import cn.dsscm.dto.ProductQuery;
@@ -17,5 +20,11 @@ public interface ProductService {
     String getPhotoFilename(Integer id);
 
     Integer count();
+
+    Product get(Integer id);
+
+    void insert(Product product, MultipartFile photo) throws IllegalStateException, IOException;
+
+    void update(Product product, MultipartFile photo) throws IllegalStateException, IOException;
     
 }

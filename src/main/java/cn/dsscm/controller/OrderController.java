@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RestController;
 import cn.dsscm.common.Result;
 import cn.dsscm.dto.OrderQuery;
 import cn.dsscm.dto.PageInfo;
-import cn.dsscm.pojo.Order;
 import cn.dsscm.service.OrderService;
 import cn.dsscm.vo.OrderDetails;
 import lombok.RequiredArgsConstructor;
